@@ -41,3 +41,11 @@ img:active{
   margin: 20px;
   border-radius: 8px;
 }
+
+.system-message
+{
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #e97171;
+  border: inset 3px #ffcb8e ;
+}

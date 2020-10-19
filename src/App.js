@@ -37,9 +37,17 @@ export class App extends Component {
     return (
       <Router>
         <div className="container-fluid">
+          <br/>
+          <div class="btn-group float-right" role="group" aria-label="Basic example">
+            <a class="btn btn-secondary" href="/md2html">Markdown Previewer</a>
+            <a class="btn btn-secondary disabled" href="#"></a>
+            <a class="btn btn-secondary" href="/rst2html">RST Previewer</a>
+          </div>
+          <br/>
+
           {/* Markdown Router */}
           <Route
-            path="/mdtohtml"
+            path="/md2html"
             render={(props) => (
               <React.Fragment>
                 <h2 className="text-center m-4" id="title">
