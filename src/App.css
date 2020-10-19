@@ -15,12 +15,29 @@ body {
 }
 
 .preview {
-  background-color: #fff;
   padding: 15px;
+}
+
+.form-control:active{
+  background-color: white;
 }
 
 .form-control, .preview{
   background-color: #f1faee;
-  min-height: 700px;
+  min-height: 75vh;
   box-shadow: 5px 5px  #a4a9ad;
+
+}
+
+img:active{
+  transform: scale(8);
+  /* height: 100%; */
+}
+
+.literal-block{
+  background-color: rgb(58, 57, 57);
+  color: white;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 8px;
 }
