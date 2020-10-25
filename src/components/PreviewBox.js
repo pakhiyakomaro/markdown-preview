@@ -1,12 +1,7 @@
 import React from "react";
 import TextBox from "./TextBox";
 
-function PreviewBox({
-  conversionheading,
-  parsedText,
-  updateSourceText,
-  text,
-}) {
+function PreviewBox({ conversionheading, parsedText, updateSourceText, text }) {
   return (
     <React.Fragment>
       <h2 className="text-center m-4" id="title">

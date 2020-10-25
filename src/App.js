@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ButtonGroup from "./components/ButtonGroup";
+import PreviewBox from "./components/PreviewBox";
 
 import "./App.css";
-import PreviewBox from "./components/PreviewBox";
 
 let marked = require("marked");
 const axios = require("axios").default;
@@ -13,6 +13,7 @@ export class App extends Component {
     text: "",
     results: "",
   };
+  // Update Functions
   updateSourceText = (e) => {
     this.setState({ text: e.target.value }, () => {
       this.crst();
@@ -45,7 +46,7 @@ export class App extends Component {
             path="/md2html"
             render={(props) =>
               PreviewBox({
-                conversionheading: "Convert your text to Mark",
+                conversionheading: "Convert your text to Markdown",
                 parsedText: markdown,
                 updateSourceText: this.updateSourceText,
                 text: text,
