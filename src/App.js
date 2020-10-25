@@ -22,7 +22,7 @@ export class App extends Component {
   crst = () => {
     axios({
       method: "post",
-      url: "http://localhost:5000/send",
+      url: "http://localhost:5000/api/send",
       headers: { "content-type": "application/json" },
       data: this.state,
     })
