@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import TextBox from './components/TextBox';
 import ButtonGroup from "./components/ButtonGroup";
 
 import "./App.css";
+import PreviewBox from "./components/PreviewBox";
 
 let marked = require("marked");
-const axios = require('axios').default;
+const axios = require("axios").default;
 
 export class App extends Component {
   state = {
@@ -14,86 +14,54 @@ export class App extends Component {
     results: "",
   };
   updateSourceText = (e) => {
-    this.setState({ text: e.target.value},()=>{this.crst()});
+    this.setState({ text: e.target.value }, () => {
+      this.crst();
+    });
   };
   crst = () => {
     axios({
-      method:'post',
-      url:"http://localhost:3000/send",
-      headers: {'content-type': 'application/json'},
-      data:this.state
+      method: "post",
+      url: "http://localhost:5000/send",
+      headers: { "content-type": "application/json" },
+      data: this.state,
     })
-        .then(result => {
-          this.setState({results:result.data});
-          // console.log(result.data)
-        })
-        .catch(error=> {
-          console.log(error);
-        })
+      .then((result) => {
+        this.setState({ results: result.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   render() {
     const { text } = this.state;
     const markdown = marked(text, { breaks: true, gfm: true });
     const rsthtml = this.state.results;
-    // const rst =
     return (
       <Router>
         <div className="container-fluid">
-          <ButtonGroup/>
-
+          <ButtonGroup />
           {/* Markdown Router */}
           <Route
             path="/md2html"
-            render={(props) => (
-              <React.Fragment>
-                <h2 className="text-center m-4" id="title">
-                  Convert your text to Markdown
-                </h2>
-                <div className="row ">
-                  <div className="col-6 ">
-                    <h2 className="text-center p-2" id="text-area-label">
-                      Enter your text:
-                    </h2>
-                    <TextBox text={this.text} updateSourceText={this.updateSourceText}/>
-                  </div>
-                  <div className="col-6" id="preview">
-                    <h2 className="text-center p-2" id="text-area-label">
-                      See the result:
-                    </h2>
-                    <div className="preview rounded">
-                      <div dangerouslySetInnerHTML={{ __html: markdown }} />
-                    </div>
-                  </div>
-                </div>
-              </React.Fragment>
-            )}
+            render={(props) =>
+              PreviewBox({
+                conversionheading: "Convert your text to Mark",
+                parsedText: markdown,
+                updateSourceText: this.updateSourceText,
+                text: text,
+              })
+            }
           />
           <Route
             path="/rst2html"
-            render={(props) => (
-              <React.Fragment>
-                <h2 className="text-center m-4" id="title">
-                  Convert your text to ReStructured Text
-                </h2>
-                <div className="row ">
-                  <div className="col-6 ">
-                    <h2 className="text-center p-2" id="text-area-label">
-                      Enter your text:
-                    </h2>
-                    <TextBox text={this.text} updateSourceText={this.updateSourceText}/>
-                  </div>
-                  <div className="col-6" id="preview">
-                    <h2 className="text-center p-2" id="text-area-label">
-                      See the result:
-                    </h2>
-                    <div className="preview rounded">
-                      <div dangerouslySetInnerHTML={{ __html: rsthtml }} />
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-              </React.Fragment>
-            )}
+            render={(props) =>
+              PreviewBox({
+                conversionheading: "Convert your text to reStructred Text",
+                parsedText: rsthtml,
+                updateSourceText: this.updateSourceText,
+                text: text,
+              })
+            }
           />
         </div>
       </Router>
