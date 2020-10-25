@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import TextBox from './components/TextBox'
 
 import "./App.css";
 
@@ -17,7 +18,7 @@ export class App extends Component {
   crst = () => {
     axios({
       method:'post',
-      url:"http://localhost:5000/send",
+      url:"http://localhost:3000/send",
       headers: {'content-type': 'application/json'},
       data:this.state
     })
@@ -58,12 +59,7 @@ export class App extends Component {
                     <h2 className="text-center p-2" id="text-area-label">
                       Enter your text:
                     </h2>
-                    <textarea
-                      className="form-control"
-                      id="editor"
-                      value={text}
-                      onChange={this.updateSourceText}
-                    />
+                    <TextBox text={this.text} updateSourceText={this.updateSourceText}/>
                   </div>
                   <div className="col-6" id="preview">
                     <h2 className="text-center p-2" id="text-area-label">
@@ -89,12 +85,7 @@ export class App extends Component {
                     <h2 className="text-center p-2" id="text-area-label">
                       Enter your text:
                     </h2>
-                    <textarea
-                      className="form-control"
-                      id="editor"
-                      value={text}
-                      onChange={this.updateSourceText}
-                    />
+                    <TextBox text={this.text} updateSourceText={this.updateSourceText}/>
                   </div>
                   <div className="col-6" id="preview">
                     <h2 className="text-center p-2" id="text-area-label">
