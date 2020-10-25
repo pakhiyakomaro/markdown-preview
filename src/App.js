@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import TextBox from './components/TextBox'
+import TextBox from './components/TextBox';
+import ButtonGroup from "./components/ButtonGroup";
 
 import "./App.css";
 
@@ -38,13 +39,7 @@ export class App extends Component {
     return (
       <Router>
         <div className="container-fluid">
-          <br/>
-          <div class="btn-group float-right" role="group" aria-label="Basic example">
-            <a class="btn btn-secondary" href="/md2html">Markdown Previewer</a>
-            <a class="btn btn-secondary disabled" href="#"></a>
-            <a class="btn btn-secondary" href="/rst2html">RST Previewer</a>
-          </div>
-          <br/>
+          <ButtonGroup/>
 
           {/* Markdown Router */}
           <Route
